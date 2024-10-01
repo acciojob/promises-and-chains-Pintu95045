@@ -1,27 +1,54 @@
 //your JS code here. If required.
-document.getElementById("ageForm").addEventListener("submit", function(event) {
-event.preventDefault(); 
-const name = document.getElementById("name").value;
-const age = document.getElementById("age").value;
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-if (name && age) {
-new Promise((resolve, reject) => {
-setTimeout(() => {
-if (age >= 18) {
-resolve();
-} else {
-reject();
-}
-}, 4000); 
-})
-.then(() => {
-      alert(Welcome, ${name}. You can vote.);
-      alert(`Welcome, ${name}. You can vote.`);
-})
-.catch(() => {
-      alert(Oh sorry ${name}. You aren't old enough.);
-      alert(`Oh sorry ${name}. You aren't old enough.`);
+  const age = document.getElementById("age").value;
+  const name = document.getElementById("name").value;
+
+  if (age.trim() === '' || name.trim() === '') {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (parseInt(age) >= 18) {
+        resolve(`Welcome, ${name}. You can vote.`);
+      } else {
+        reject(`Oh sorry ${name}. You aren't old enough.`);
+      }
+    }, 4000);
+  });
+
+  promise.then(message => {
+    alert(message);
+  }).catch(error => {
+    alert(error);
+  });
+});document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const age = document.getElementById("age").value;
+  const name = document.getElementById("name").value;
+
+  if (age.trim() === '' || name.trim() === '') {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (parseInt(age) >= 18) {
+        resolve(`Welcome, ${name}. You can vote.`);
+      } else {
+        reject(`Oh sorry ${name}. You aren't old enough.`);
+      }
+    }, 4000);
+  });
+
+  promise.then(message => {
+    alert(message);
+  }).catch(error => {
+    alert(error);
+  });
 });
-} else {
-alert("Please fill in all fields.");
-  }
